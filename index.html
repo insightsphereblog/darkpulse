@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <title>DarkPulse - A Modern Blog Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .hover-scale:hover {
+        transform: scale(1.02);
+        transition: transform 0.2s ease-in-out;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-100">
+    <!-- Header -->
+    <header class="bg-gray-800 shadow-md sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center"
+      >
+        <h1 class="text-2xl font-bold text-white"><a href="/index.html">DarkPulse</a></h1>
+        <nav class="space-x-6">
+          <a href="/index.html" class="text-gray-300 hover:text-white">Home</a>
+          <a href="#" class="text-gray-300 hover:text-white">Categories</a>
+          <a href="#" class="text-gray-300 hover:text-white">About</a>
+          <a href="#" class="text-gray-300 hover:text-white">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <!-- Hero Section -->
+      <section class="mb-12">
+        <div class="bg-gray-800 rounded-lg p-8 shadow-lg hover-scale">
+          <h2 class="text-3xl font-semibold text-white mb-4">
+            Featured Story: Wohnsitz ummelden in Zürich
+          </h2>
+          <p class="text-gray-400 mb-4">
+            Ein Umzug kann eine aufregende, aber auch stressige Zeit sein. Es
+            gibt viele Dinge zu erledigen, wie beispielsweise das Packen der
+            Kartons, das Organisieren des Transports und das Ummelden bei
+            verschiedenen Behörden. Doch im Kanton Zürich haben Sie die
+            Möglichkeit, den Umzug online zu melden, was den Prozess erheblich
+            vereinfachen kann.
+          </p>
+          <p class="text-gray-500 text-sm">
+            By Kabir • 5 min read • Aug 28, 2025
+          </p>
+          <a
+            href="/wohnsitz-ummelden-in-zurich.html"
+            class="mt-4 inline-block text-green-400 hover:text-green-300"
+            >Read More</a
+          >
+        </div>
+      </section>
+
+      <!-- Blog Posts Grid -->
+      <section
+        id="postsGrid"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      ></section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-6">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400"
+      >
+        <p>&copy; 2025 DarkPulse. All rights reserved.</p>
+        <div class="mt-4 space-x-4">
+          <a href="#" class="text-gray-300 hover:text-white">Privacy Policy</a>
+          <a href="#" class="text-gray-300 hover:text-white"
+            >Terms of Service</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Array to store posts (in-memory content management)
+      const posts = [
+        {
+          id: 1,
+          title: "Wohnsitz ummelden in Zürich",
+          content:
+            "Ein Umzug kann eine aufregende, aber auch stressige Zeit sein. Es gibt viele Dinge zu erledigen, wie beispielsweise das Packen der Kartons, das Organisieren des Transports und das Ummelden bei verschiedenen Behörden. Doch im Kanton Zürich haben Sie die Möglichkeit, den Umzug online zu melden, was den Prozess erheblich vereinfachen kann.",
+          author: "Kabir Hasan",
+          date: "Aug 28, 2025",
+          readTime: "3 min read",
+          image:
+            "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCxRMwylzgiB5IZt26H7fvjkZJH9pAf3Uf59Ab8l9c2wL8uo6N6bA6E2g1ORF6fibrTtGx-JPrgVVUpOSfNEwZPhD32EPAgu7j7nADCzCuqruclsBulbpWhAKAz5zc34PSTn8uhEmyNG2S8qfgMsAznmvRyTq-8f6TZiUFNrvDmEQ2zwG8cmIQlEyI-m7b/w640-h360/zuericenter-umzug%20banner.png",
+          url: "/wohnsitz-ummelden-in-zurich.html",
+        },
+      ];
+
+      // Function to render posts in the grid
+      function renderPosts() {
+        const postsGrid = document.getElementById("postsGrid");
+        postsGrid.innerHTML = ""; // Clear existing content
+        posts.forEach((post) => {
+          const postElement = document.createElement("article");
+          postElement.className =
+            "bg-gray-800 rounded-lg p-6 shadow-md hover-scale";
+          postElement.innerHTML = `
+                    <img src="${
+                      post.image
+                    }" alt="Blog post image" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold text-white mb-2">${
+                      post.title
+                    }</h3>
+                    <p class="text-gray-400 mb-4">${post.content.substring(
+                      0,
+                      100
+                    )}...</p>
+                    <p class="text-gray-500 text-sm">By ${post.author} • ${
+            post.readTime
+          } • ${post.date}</p>
+                    <a href="${
+                      post.url
+                    }" class="text-green-400 hover:text-green-300">Read More</a>
+                `;
+          postsGrid.appendChild(postElement);
+        });
+      }
+
+      // Render posts on page load
+      renderPosts();
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
